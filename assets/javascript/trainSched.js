@@ -1,17 +1,13 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyANWwK0NZbyhhjxTWL7CbMj4wogn3EcJLA",
-    authDomain: "trainschedule01-47f02.firebaseapp.com",
-    databaseURL: "https://trainschedule01-47f02.firebaseio.com",
-    projectId: "trainschedule01-47f02",
-    storageBucket: "trainschedule01-47f02.appspot.com",
-    messagingSenderId: "224104481454",
-    appId: "1:224104481454:web:5c03e947fdec0a3c74233f"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+ // Your web app's Firebase configuration
+
+// Initialize Firebase
+
+
+
  $("#subBtn").on("click", function(event){
  event.preventDefault();
-
+ var database = firebase.database();
+ 
     var trainName= $("#trainName").val().trim();
     var trainFrequency= $("#frequency").val().trim();
     var trainDestination = $("#Destination").val().trim();

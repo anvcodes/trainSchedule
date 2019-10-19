@@ -11,11 +11,9 @@
   crossorigin="anonymous"></script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
 
-  <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-database.js"></script>
 
-    <title>Document</title>
+    <title>ALL ABOARD</title>
 </head>
 <body>
   <div class="jumbotron jumbotron-fluid" style="margin-left: 2%; margin-right: 2%;">
@@ -29,7 +27,7 @@
 
 <div class="card" style="margin-left: 2%; margin-right: 2%;">
     <div class="card-header">
-      Current Employees
+      Inbout & Outbound Train Schedule
     </div>
     <table class="table">
             <thead class="thead-dark" style="margin-left: 2%; margin-right: 2%;">
@@ -39,32 +37,19 @@
                 <th scope="col">destination</th>
                 <th scope="col">frequency</th>
                 <th scope="col">Next Train</th>
-               
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr >
              
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                
-                
+                <td class="train-name"></td>
+                <td class="departure-time"></td>
+                <td class="train-destination"></td>
+                <td class="train-frequency"></td>
+                <td class="next-train"></td>
               </tr>
-              <tr>
-                
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-               
-                <td></td>
+
+              <tr >
                 <td></td>
                 <td></td>
                 <td></td>
@@ -72,25 +57,32 @@
                 <td></td>
               </tr>
 
+
               <tr>
-                   
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>                  
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                  </tr>
+              </tr>
 
                   <tr>
-                      
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>Mark</td>
-                        <td></td>
-                      
-                      </tr>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>@twitter</td>
+                      <td>Mark</td>
+                      <td></td>
+                    </tr>
+
             </tbody>
           </table>
         
@@ -126,6 +118,48 @@
 </div>
      
     <script src="assets/javascript/trainSched.js"></script>      
-    
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+
 </body>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyANWwK0NZbyhhjxTWL7CbMj4wogn3EcJLA",
+    authDomain: "trainschedule01-47f02.firebaseapp.com",
+    databaseURL: "https://trainschedule01-47f02.firebaseio.com",
+    projectId: "trainschedule01-47f02",
+    storageBucket: "trainschedule01-47f02.appspot.com",
+    messagingSenderId: "224104481454",
+    appId: "1:224104481454:web:0db4f755058f473274233f"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  $("#subBtn").on("click", function(event){
+ event.preventDefault();
+ 
+ var database = firebase.database();
+ 
+    var trainName= $("#trainName").val().trim();
+    var trainFrequency= $("#frequency").val().trim();
+    var trainDestination = $("#Destination").val().trim();
+    var firstTrainTime = $("#firstTrainTime").val().trim();
+
+
+    var newTrainInfo= {
+        train: trainName,
+        frequency: trainFrequency,
+        destination: trainDestination,
+        firstTrain: firstTrainTime,
+      }
+
+    database.ref().push(newTrainInfo);
+
+      $(".train-name").text(trainName);
+ });
+
+</script>
 </html>
